@@ -1,0 +1,49 @@
+cabal-version:      3.0
+name:               Base-Haskell
+version:            0.1.0.0
+-- synopsis:
+-- description:
+-- homepage:
+license:            MIT
+license-file:       LICENSE
+-- author:
+-- maintainer:
+-- copyright:
+-- category:
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+-- extra-source-files:
+
+common warnings
+    ghc-options: -Wall
+
+library src-module
+    exposed-modules:
+        Src
+    hs-source-dirs:   src
+    build-depends:
+        base ^>=4.20.0.0
+    default-language: GHC2024
+    other-modules:
+        Misc
+
+executable Base-Haskell
+    import:           warnings
+    main-is:          Main.hs
+    -- other-modules:
+    -- other-extensions:
+    build-depends:
+      base ^>=4.20.0.0,
+      src-module
+    hs-source-dirs:   app
+    default-language: GHC2024
+
+test-suite tests
+    type:             exitcode-stdio-1.0
+    main-is:          TestMain.hs
+    build-depends:
+      base ^>=4.20.0.0,
+      HUnit ^>=1.6,
+      src-module
+    hs-source-dirs:   tests
+    default-language: GHC2024
